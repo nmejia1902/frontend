@@ -17,8 +17,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
 const [usuario, setUsuario] = useState<string>(""); 
 const [autenticado, setAutenticado] = useState<boolean>(false); 
 const router = useRouter(); 
-
-    const iniciarSesion = (user: string, pass: string) => {
+const iniciarSesion = (user: string, pass: string) => { 
         if (user === "admin" && pass === "admin123") {
             setUsuario(user);
             setAutenticado(true);
@@ -27,7 +26,6 @@ const router = useRouter();
             alert("credenciales incorrectas")
         }
     }
-
     const cerrarSesion = () => {
         setUsuario("");
         setAutenticado(false);
@@ -39,12 +37,8 @@ const router = useRouter();
             {children}
         </AuthContext.Provider>
     )
-}
+} 
 
-export const useAuth = () => {
-    const context = useContext(AuthContext)
-    if (!context) {
-        throw new Error("useAuth debe usarse dentro de AuthProvider")
-    }
-    return context
+export const useAuth = () => { 
+return useContext(AuthContext)! 
 } 
